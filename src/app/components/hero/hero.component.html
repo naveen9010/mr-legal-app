@@ -1,0 +1,34 @@
+<section class="hero-section" aria-label="Hero banner with rotating legal quotes">
+  <div class="hero-backgrounds">
+    <div
+      class="hero-bg"
+      *ngFor="let slide of slides; let i = index"
+      [class.active]="i === currentSlideIndex"
+      [ngStyle]="{ 'background-image': 'url(' + slide.image + ')' }"
+    ></div>
+  </div>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <h1 class="hero-title">
+      <span id="typewriter-text">{{ currentQuote }}</span>
+    </h1>
+
+    <div class="slide-dots" aria-hidden="true">
+      <div
+        class="dot"
+        *ngFor="let slide of slides; let i = index"
+        [class.active]="i === currentSlideIndex"
+      ></div>
+    </div>
+  </div>
+
+  <!-- 🔻 Scroll Indicator -->
+  <div class="scroll-indicator" (click)="scrollToWhyChoose()" aria-label="Scroll to next section">
+    <div class="scroll-label">Scroll</div>
+    <svg class="scroll-arrow" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  </div>
+</section>

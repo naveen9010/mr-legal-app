@@ -1,0 +1,115 @@
+.practice-section {
+    padding: 100px 30px;
+    background: linear-gradient(to bottom, #daccbe, #f2f2f2);
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+  
+    .section-title {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 10px;
+    }
+  
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 60px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    .practice-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+  
+    .practice-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 40px 30px;
+      box-shadow: 0 10px 60px rgba(0, 0, 0, 0.06);
+      transition: all 0.35s ease;
+      width: 290px;
+      position: relative;
+      overflow: hidden;
+  
+      &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 80px rgba(0, 0, 0, 0.15);
+        background: linear-gradient(to bottom, #fff, #fdf7f1);
+      }
+  
+      .icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 20px;
+        border-radius: 50%;
+        background: #ffe1c4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      
+        mat-icon {
+          font-size: 36px;
+          color: #e65100;
+          line-height: 1;
+          width: 36px;
+          height: 36px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+      
+  
+      .card-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 16px;
+        color: #222;
+      }
+  
+      .area-list {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+  
+        li {
+          font-size: 0.95rem;
+          color: #555;
+          margin-bottom: 6px;
+          position: relative;
+          padding-left: 16px;
+  
+          &::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: #e65100;
+            font-size: 0.75rem;
+            top: 1px;
+          }
+        }
+      }
+    }
+    .practice-card .icon {
+        animation: bounceIn 0.6s ease;
+      }
+      
+      @keyframes bounceIn {
+        0% {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      
+  }
+  

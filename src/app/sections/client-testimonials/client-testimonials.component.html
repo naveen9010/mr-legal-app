@@ -1,0 +1,21 @@
+<section class="testimonials-section">
+    <div class="content-wrapper">
+      <h2 class="section-title">What Our Clients Say</h2>
+      <div class="testimonials-carousel">
+        <div class="testimonial-card" *ngFor="let t of testimonials" data-aos="fade-up">
+          <div class="quote-icon">❝</div>
+          <p class="testimonial-text">“{{ t.feedback }}”</p>
+          <div class="testimonial-footer">
+            <div class="avatar-ring">
+              <div class="avatar">{{ t.name.charAt(0) }}</div>
+            </div>
+            <div class="author-info">
+              <span class="author-name">{{ t.name }}</span>
+              <span class="author-case">{{ t.caseType }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

@@ -1,0 +1,104 @@
+.about-section {
+    background: #f8f5f0;
+    padding: 100px 20px;
+    font-family: 'Segoe UI', sans-serif;
+  
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+  
+    .about-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 60px;
+    }
+  
+    .about-image {
+      flex: 1 1 40%;
+      text-align: center;
+  
+      img {
+        width: 100%;
+        max-width: 380px;
+        border-radius: 16px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+      }
+  
+      .lawyer-info {
+        margin-top: 20px;
+  
+        h3 {
+          font-size: 1.8rem;
+          font-weight: 800;
+          color: #0d1b2a;
+          margin-bottom: 5px;
+        }
+  
+        .qualifications {
+          font-size: 1rem;
+          color: #444;
+          margin-bottom: 5px;
+          font-family: 'Segoe UI', sans-serif;
+        }
+  
+        .title {
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: #007bff;
+          margin-bottom: 2px;
+          font-family: 'Segoe UI', sans-serif;
+        }
+  
+        .founder {
+          font-size: 0.9rem;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          color: #888;
+          font-family: 'Segoe UI', sans-serif;
+        }
+      }
+    }
+  
+    .about-text {
+      flex: 1 1 55%;
+      font-family: 'Segoe UI', sans-serif;
+  
+      h2 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #0d1b2a;
+        margin-bottom: 20px;
+  
+        span {
+          color: #007bff;
+        }
+      }
+  
+      p {
+        font-size: 1.1rem;
+        color: #333;
+        line-height: 1.8;
+        margin-bottom: 20px;
+        font-family: 'Segoe UI', sans-serif;
+      }
+  
+      .highlights {
+        list-style: none;
+        padding: 0;
+        margin-top: 10px;
+  
+        li {
+          font-size: 1rem;
+          color: #007bff;
+          margin-bottom: 12px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+      }
+    }
+  }
+  
