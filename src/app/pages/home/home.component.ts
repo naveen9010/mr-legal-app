@@ -8,12 +8,28 @@ import { BookConsultationComponent } from '../../sections/book-consultation/book
 import { AboutUsComponent } from '../../sections/about-us/about-us.component';
 import { ContactUsComponent } from '../../sections/contact-us/contact-us.component';
 import { FooterComponent } from '../../sections/footer/footer.component';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, HeroComponent, WhyChooseUsComponent, PracticeAreasComponent, ClientTestimonialsComponent, BookConsultationComponent, AboutUsComponent, ContactUsComponent, FooterComponent],
+  imports: [HeaderComponent,
+     HeroComponent,
+      WhyChooseUsComponent,
+       PracticeAreasComponent,
+        ClientTestimonialsComponent,
+         BookConsultationComponent,
+          AboutUsComponent,
+           ContactUsComponent,
+            FooterComponent,
+          ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {}
+export class HomeComponent {
+    constructor(private notificationService: NotificationService) {}
+
+    ngOnInit(): void {
+    this.notificationService.requestPermissionAndToken(); // <-- Request token once app loads
+  }
+}

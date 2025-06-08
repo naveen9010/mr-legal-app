@@ -1,0 +1,7 @@
+    <div style="padding:20px;">
+      <h3>🔥 Firebase Test Component</h3>
+      <button (click)="addTestData()">Add Test Data</button>
+      <ul>
+        <li *ngFor="let item of testData">{{ item.name }}</li>
+      </ul>
+    </div>

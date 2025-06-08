@@ -1,0 +1,20 @@
+<div class="hearing-form">
+  <h3>Add Hearing Schedule</h3>
+  <input type="text" [(ngModel)]="caseTitle" placeholder="Case Title" />
+  <input type="date" [(ngModel)]="hearingDate" />
+  <textarea [(ngModel)]="notes" placeholder="Notes (optional)"></textarea>
+  <button (click)="addHearing()">Add Hearing</button>
+</div>
+
+<hr />
+
+<div class="hearing-list">
+  <h3>Upcoming Hearings</h3>
+  <ul>
+    <li *ngFor="let hearing of hearings$ | async">
+      <strong>{{ hearing.caseTitle }}</strong> — 
+      {{ hearing.hearingDate }}<br />
+      <small>{{ hearing.notes }}</small>
+    </li>
+  </ul>
+</div>

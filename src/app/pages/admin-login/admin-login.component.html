@@ -1,0 +1,25 @@
+<section class="admin-login-container">
+  <h2>👨‍⚖️ Admin Login</h2>
+
+  <form (ngSubmit)="login()" #loginForm="ngForm" class="login-form">
+    <input
+      type="email"
+      name="email"
+      [(ngModel)]="email"
+      placeholder="Email"
+      required
+    />
+    <input
+      type="password"
+      name="password"
+      [(ngModel)]="password"
+      placeholder="Password"
+      required
+    />
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+  </form>
+
+  <div *ngIf="loginError" class="error-message">
+    {{ loginError }}
+  </div>
+</section>

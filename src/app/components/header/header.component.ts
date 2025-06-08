@@ -1,8 +1,9 @@
-import { Component, HostListener, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, Component, HostListener, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,39 +12,50 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, AfterViewInit {
   isMenuOpen = false;
   isMobile = false;
   isScrolled = false;
   activeSection: string = 'home';
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object,
+  private router: Router) {}
+
+goToAdminLogin(event?: Event): void {
+  if (event) event.preventDefault(); // Avoid page jump on anchor click
+  this.closeMenu(); // Ensure menu closes in mobile view
+  this.router.navigate(['/admin-login']);
+}
+
 
   ngOnInit(): void {
     this.checkScreenSize();
-    this.onWindowScroll(); // initialize on page load
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => this.checkScreenSize(), 0); // Ensure view initialized
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.checkScreenSize();
   }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
     if (isPlatformBrowser(this.platformId)) {
-      const heroHeight = document.querySelector('.hero-section')?.clientHeight || 0;
       const scrollY = window.scrollY || window.pageYOffset;
+      const heroHeight = document.querySelector('.hero-section')?.clientHeight || 0;
       this.isScrolled = scrollY > heroHeight - 80;
 
-      // Scroll Spy Logic
       const sectionIds = ['home', 'about', 'practice', 'contact', 'book'];
-      const scrollTop = scrollY + 150; // header offset
-
-      // Default to home unless matched below
+      const scrollTop = scrollY + 150;
       this.activeSection = 'home';
-
       for (const id of sectionIds) {
-        const section = document.getElementById(id);
-        if (section) {
-          const offsetTop = section.offsetTop;
-          const offsetBottom = offsetTop + section.offsetHeight;
-
+        const el = document.getElementById(id);
+        if (el) {
+          const offsetTop = el.offsetTop;
+          const offsetBottom = offsetTop + el.offsetHeight;
           if (scrollTop >= offsetTop && scrollTop < offsetBottom) {
             this.activeSection = id;
             break;
@@ -51,11 +63,6 @@ export class HeaderComponent implements OnInit {
         }
       }
     }
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.checkScreenSize();
   }
 
   checkScreenSize() {
@@ -75,11 +82,7 @@ export class HeaderComponent implements OnInit {
   scrollToSection(id: string): void {
     setTimeout(() => {
       const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else {
-        console.warn(`Element with id #${id} not found`);
-      }
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 100);
   }
 }
