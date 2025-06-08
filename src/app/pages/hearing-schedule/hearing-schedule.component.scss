@@ -1,0 +1,37 @@
+.hearing-form {
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  input, textarea {
+    padding: 8px;
+    font-size: 16px;
+  }
+
+  button {
+    background: #f4a261;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+.hearing-list {
+  max-width: 600px;
+  margin: 20px auto;
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    margin-bottom: 12px;
+    padding: 10px;
+    background: #f9f9f9;
+    border-left: 4px solid #f4a261;
+  }
+}

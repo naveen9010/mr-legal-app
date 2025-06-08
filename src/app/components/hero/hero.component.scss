@@ -2,14 +2,25 @@
   position: relative;
   width: 100%;
   height: 100vh;
+  height: 100dvh; // ✅ Use dynamic viewport height for modern mobile browsers
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @supports (-webkit-touch-callout: none) {
+    height: -webkit-fill-available; // iOS Safari support
+  }
 }
+
 
 .hero-backgrounds {
   position: absolute;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  z-index: 1;
 }
 
 .hero-bg {
@@ -17,115 +28,104 @@
   width: 100%;
   height: 100%;
   background-size: cover;
-  background-position: center;
+  background-position: center center;
+  background-repeat: no-repeat;
   opacity: 0;
   transition: opacity 1.5s ease-in-out;
   z-index: 1;
 
-  @media (max-width: 768px) {
-    background-size: cover;
-    background-position: top center;
+  &.active {
+    opacity: 1;
+    z-index: 2;
   }
 }
 
-.hero-bg.active {
-  opacity: 1;
-  z-index: 2;
+@media (max-width: 768px) {
+  .hero-bg {
+    background-size: contain;
+    background-position: top;
+    background-repeat: no-repeat;
+  }
 }
 
 .hero-overlay {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.75));
-  top: 0;
-  left: 0;
   z-index: 3;
 }
 
 .hero-content {
-  padding-top: 120px;
-  position: relative;
   z-index: 4;
+  position: relative;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: 'Segoe UI', sans-serif;
   text-align: center;
   color: white;
-  font-family: 'Segoe UI', sans-serif;
+  padding: 0 16px;
 }
 
 .hero-title {
-  font-size: 3rem;
+  font-size: 2.8rem;
   font-weight: 700;
   max-width: 90vw;
-  margin-bottom: 20px;
 
   @media (max-width: 768px) {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   @media (max-width: 480px) {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
-}
-
-#typewriter-text {
-  display: inline-block;
-  overflow: hidden;
-  white-space: normal;
-  word-break: break-word;
-  text-align: center;
 }
 
 .slide-dots {
   position: absolute;
   top: 50%;
-  left: 15px;
-  transform: translateY(-50%);
+  left: 12px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-}
+  gap: 10px;
+  transform: translateY(-50%);
+  z-index: 5;
 
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-  transition: all 0.3s ease;
-}
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
 
-.dot.active {
-  background: white;
-  transform: scale(1.4);
+    &.active {
+      background: white;
+      transform: scale(1.4);
+    }
+  }
 }
 
 .scroll-indicator {
   position: absolute;
-  bottom: 24px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  z-index: 10;
   animation: bounce 2s infinite;
-  opacity: 0.9;
 
   .scroll-label {
-    color: #ffffff;
+    color: #fff;
     font-size: 14px;
-    letter-spacing: 1px;
-    font-weight: 500;
   }
 
   .scroll-arrow {
-    stroke: white;
     animation: blink 1.5s infinite;
   }
 }

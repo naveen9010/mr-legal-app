@@ -48,7 +48,7 @@
     .scroll-top {
       position: fixed;
       bottom: 100px;
-      right: 25px;
+      right: 20px;
       background: #f8d07a;
       color: #0d1b2a;
       border: none;
@@ -57,7 +57,7 @@
       border-radius: 50%;
       font-size: 1.1rem;
       cursor: pointer;
-      z-index: 998;
+      z-index: 999;
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
       transition: transform 0.2s ease;
   
