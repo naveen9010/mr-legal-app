@@ -1,81 +1,93 @@
 .why-choose-section {
-  background: linear-gradient(to bottom, #cbb99c, #f2f2f2);
-    padding: 100px 20px;
-    text-align: center;
-    font-family: 'Segoe UI', sans-serif;
-  
-    .section-title {
-      font-size: 40px;
-      font-weight: 800;
-      margin-bottom: 16px;
-      color: #1a1a1a;
+  background: linear-gradient(to bottom, #1a1d23, #2c2f36, #f2f2f2);
+  padding: 100px 20px;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+
+  .section-title {
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    color: #f9f9f9;
+  }
+
+  .section-subtitle {
+    font-size: 20px;
+    font-weight: 600;
+    color: #cccccc;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .trust-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(183, 28, 28, 0.1); // wave red background
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #b30000; // wave red text
+    margin-bottom: 50px;
+  }
+
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .highlight-card {
+    background: #fff;
+    padding: 50px 30px;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    position: relative;
+    border-top: 4px solid transparent;
+    transition: all 0.4s ease;
+
+    &::before {
+      content: attr(data-index);
+      position: absolute;
+      top: -15px;
+      left: 20px;
+      font-size: 72px;
+      color: rgba(183, 28, 28, 0.08); // wave red
+      font-weight: 900;
     }
-  
-    .section-subtitle {
-      font-size: 18px;
-      color: #666;
-      margin-bottom: 10px;
+
+    &:hover {
+      transform: translateY(-8px);
+      border-top: 4px solid #b30000; // wave red
+      box-shadow: 0 16px 40px rgba(183, 28, 28, 0.2); // wave red shadow
     }
-  
-    .trust-badge {
-      font-size: 16px;
-      font-weight: 500;
-      color: #cda45e;
-      margin-bottom: 50px;
+
+    .highlight-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: #2b2b2b;
     }
-  
-    .highlights-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-  
-    .highlight-card {
-      background: #fff;
-      padding: 50px 30px;
-      border-radius: 16px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
-      position: relative;
-      border-top: 4px solid transparent;
-      transition: all 0.4s ease;
-  
-      &::before {
-        content: attr(data-index);
-        position: absolute;
-        top: -15px;
-        left: 20px;
-        font-size: 72px;
-        color: rgba(205, 164, 94, 0.08);
-        font-weight: 900;
-      }
-  
-      &:hover {
-        transform: translateY(-8px);
-        border-top: 4px solid #cda45e;
-        box-shadow: 0 16px 40px rgba(205, 164, 94, 0.2);
-      }
-  
-      .highlight-title {
-        font-size: 22px;
-        font-weight: 700;
-        margin-bottom: 14px;
-        color: #2b2b2b;
-      }
-  
-      .highlight-desc {
-        font-size: 15px;
-        line-height: 1.6;
-        color: #555;
-      }
-    }
-  
-    .client-quote {
-      margin-top: 60px;
-      font-style: italic;
-      font-size: 16px;
-      color: #444;
+
+    .highlight-desc {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #555;
     }
   }
-  
+
+  .client-quote {
+    margin-top: 60px;
+    font-style: italic;
+    font-size: 18px;
+    color: #ddd;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    padding: 20px;
+    border-left: 4px solid #b30000; // wave red
+    background: rgba(255, 255, 255, 0.05);
+  }
+}

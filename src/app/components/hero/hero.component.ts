@@ -11,42 +11,17 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class HeroComponent implements OnInit {
   slides = [
-    {
-      desktopImage: 'assets/hero1.jpg',
-      mobileImage: 'assets/mobile-hero1.png',
-      quote: 'Empowering Justice, One Case at a Time.'
-    },
-    {
-      desktopImage: 'assets/hero2.jpg',
-      mobileImage: 'assets/mobile-hero2.png',
-      quote: 'Protecting Your Rights with Integrity.'
-    },
-    {
-      desktopImage: 'assets/hero3.png',
-      mobileImage: 'assets/mobile-hero3.png',
-      quote: 'Legal Solutions Tailored for You.'
-    },
-    {
-      desktopImage: 'assets/hero4.png',
-      mobileImage: 'assets/mobile-hero4.png',
-      quote: 'Advocating with Passion and Purpose.'
-    },
-    {
-      desktopImage: 'assets/hero5.jpg',
-      mobileImage: 'assets/mobile-hero5.png',
-      quote: 'Expertise. Experience. Excellence.'
-    },
-    {
-      desktopImage: 'assets/hero6.png',
-      mobileImage: 'assets/mobile-hero6.png',
-      quote: 'Where Law Meets Loyalty.'
-    }
+    { quote: 'Empowering Justice, One Case at a Time.' },
+    { quote: 'Protecting Your Rights with Integrity.' },
+    { quote: 'Legal Solutions Tailored for You.' },
+    { quote: 'Advocating with Passion and Purpose.' },
+    { quote: 'Expertise. Experience. Excellence.' },
+    { quote: 'Where Law Meets Loyalty.' }
   ];
 
   currentSlideIndex = 0;
   currentQuote = '';
   isBrowser: boolean;
-  isMobileView = false;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(this.platformId);
@@ -54,16 +29,8 @@ export class HeroComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.isBrowser) {
-      this.checkDeviceType();
       this.startSlideShow();
     }
-  }
-
-  checkDeviceType(): void {
-    this.isMobileView = window.innerWidth <= 768;
-    window.addEventListener('resize', () => {
-      this.isMobileView = window.innerWidth <= 768;
-    });
   }
 
   startSlideShow() {
@@ -91,12 +58,5 @@ export class HeroComponent implements OnInit {
         callback();
       }
     }, 80);
-  }
-
-  scrollToWhyChoose(): void {
-    const section = document.getElementById('why-choose');
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-    }
   }
 }

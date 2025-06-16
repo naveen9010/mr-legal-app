@@ -1,26 +1,27 @@
 <section id="book" class="book-consultation">
-    <div class="overlay">
-      <div class="consultation-content" data-aos="zoom-in-up">
-        <div class="consultation-text">
-          <h2>Schedule Your Legal Consultation</h2>
-          <p>We’re here to help you resolve your legal issues with clarity, confidence, and care.</p>
-          <ul>
-            <li>✔️ Free Initial Evaluation</li>
-            <li>✔️ Confidential & Professional</li>
-            <li>✔️ Tailored Legal Solutions</li>
-          </ul>
-        </div>
-  
-        <form class="consultation-form" (ngSubmit)="onSubmit()" #consultForm="ngForm">
-          <input type="text" name="name" placeholder="Full Name" ngModel required>
-          <input type="email" name="email" placeholder="Email Address" ngModel required>
-          <input type="tel" name="phone" placeholder="Phone Number" ngModel required>
-          <textarea name="message" rows="4" placeholder="Tell us about your case" ngModel required></textarea>
-          <button type="submit" [disabled]="!consultForm.valid">
-            <span>📅</span> Request Consultation
-          </button>
-        </form>
+  <div class="overlay">
+    <div class="consultation-content" data-aos="zoom-in-up">
+
+      <div class="consultation-text">
+        <h2>Schedule Your Legal Consultation</h2>
+        <p>We’re here to help you resolve your legal issues with clarity, confidence, and care.</p>
+        <ul>
+          <li>Free Initial Evaluation</li>
+          <li>Confidential & Professional</li>
+          <li>Tailored Legal Solutions</li>
+        </ul>
       </div>
+
+      <form class="consultation-form" (ngSubmit)="onSubmit()" #consultForm="ngForm" data-aos="fade-up" data-aos-delay="300">
+        <input type="text" name="name" placeholder="Full Name" [(ngModel)]="formData.name" required>
+        <input type="email" name="email" placeholder="Email Address" [(ngModel)]="formData.email" required>
+        <input type="tel" name="phone" placeholder="Phone Number" [(ngModel)]="formData.phone" required>
+        <textarea name="message" rows="4" placeholder="Tell us about your case" [(ngModel)]="formData.message" required></textarea>
+        <button type="submit" [disabled]="!consultForm.valid">
+          <span>📅</span> Request Consultation
+        </button>
+      </form>
+
     </div>
-  </section>
-  
+  </div>
+</section>

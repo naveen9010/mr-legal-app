@@ -1,110 +1,136 @@
 .book-consultation {
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); // Elegant dark blue
-    padding: 100px 0;
+  background: linear-gradient(to bottom, #1a1d23, #2c2f36, #f2f2f2);
+  padding: 100px 0;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+
+  .overlay {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .consultation-content {
+    max-width: 1100px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0; // remove gap so we can use border between columns
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     color: #fff;
-    font-family: 'Segoe UI', sans-serif;
-  
-    .overlay {
-      background: rgba(0, 0, 0, 0.3); // Less dark, more visibility
-      padding: 60px 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .consultation-text {
+    flex: 1 1 45%;
+    padding-right: 40px;
+    border-right: 1px solid rgba(255, 255, 255, 0.15); // subtle separator
+
+    h2 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      line-height: 1.2;
     }
-  
-    .consultation-content {
-      max-width: 1100px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      background: rgba(222, 221, 221, 0.08); // Light glass effect
-      backdrop-filter: blur(12px);
-      border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-      color: #fff;
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+      line-height: 1.6;
     }
-  
-    .consultation-text {
-      flex: 1 1 45%;
-  
-      h2 {
-        font-size: 2.8rem;
-        font-weight: 800;
-        margin-bottom: 20px;
-        line-height: 1.2;
-      }
-  
-      p {
-        font-size: 1.1rem;
-        margin-bottom: 25px;
-        line-height: 1.6;
-      }
-  
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-  
-        li {
-          font-size: 1rem;
-          margin-bottom: 12px;
-          color: #d2e3ff;
-  
-          &::before {
-            content: "✔️ ";
-            color: #00d4ff;
-          }
-        }
-      }
-    }
-  
-    .consultation-form {
-      flex: 1 1 50%;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-  
-      input, textarea {
-        padding: 14px 16px;
-        border: none;
-        border-radius: 10px;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
         font-size: 1rem;
-        background-color: rgba(255, 255, 255, 0.97);
-        color: #1a1a1a;
-  
-        &::placeholder {
-          color: #888;
-        }
-  
-        &:focus {
-          outline: 2px solid #00b7ff;
-        }
-      }
-  
-      button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        background: linear-gradient(90deg, #007bff, #00c6ff);
-        color: #fff;
-        font-weight: 600;
-        padding: 14px;
-        font-size: 1rem;
-        border: none;
-        border-radius: 10px;
-        transition: background-color 0.3s ease;
-  
-        &:hover {
-          background: linear-gradient(90deg, #0056b3, #0099cc);
-        }
-  
-        &:disabled {
-          background: #666;
-          cursor: not-allowed;
+        margin-bottom: 12px;
+        color: #d2e3ff;
+        position: relative;
+        padding-left: 28px;
+
+        &::before {
+          content: "✔";
+          position: absolute;
+          left: 0;
+          color: #b30000; // wave red
+          font-weight: bold;
         }
       }
     }
   }
-  
+
+  .consultation-form {
+    flex: 1 1 55%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 40px; // add left padding to align with right side
+
+    input,
+    textarea {
+      padding: 14px 16px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      background-color: rgba(255, 255, 255, 0.97);
+      color: #1a1a1a;
+
+      &::placeholder {
+        color: #888;
+      }
+
+      &:focus {
+        outline: 2px solid #b30000; // wave red focus
+      }
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(90deg, #b30000, #c62828);
+      color: #fff;
+      font-weight: 700;
+      padding: 14px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 10px;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(183, 28, 28, 0.4);
+      animation: fadeIn 1s ease forwards;
+
+      &:hover {
+        background: linear-gradient(90deg, #8b0000, #a60000);
+        box-shadow: 0 8px 24px rgba(183, 28, 28, 0.6);
+        transform: translateY(-2px);
+      }
+
+      &:disabled {
+        background: #666;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

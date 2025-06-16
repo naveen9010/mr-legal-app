@@ -1,104 +1,100 @@
 .about-section {
-    background: #f8f5f0;
-    padding: 100px 20px;
-    font-family: 'Segoe UI', sans-serif;
-  
-    .container {
-      max-width: 1200px;
-      margin: auto;
+  background: linear-gradient(to bottom, #1a1d23, #2c2f36, #f2f2f2);
+  padding: 100px 20px;
+  font-family: 'Segoe UI', sans-serif;
+
+  .container {
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  .about-wrapper {
+  display: flex;
+  flex-wrap: nowrap; // force side-by-side on desktop
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+
+  @media (max-width: 991px) {
+    flex-wrap: wrap; // stack on mobile
+  }
+}
+
+.about-image {
+  flex: 0 0 40%;
+  max-width: 40%;
+  img {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .lawyer-info {
+    margin-top: 20px;
+    h3 { font-size: 1.8rem; font-weight: 800; color: #f9f9f9; margin-bottom: 5px; }
+    .qualifications { font-size: 1rem; color: #ddd; margin-bottom: 5px; }
+    .title { font-size: 1.1rem; font-weight: 600; color: #b30000; margin-bottom: 2px; }
+    .founder {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #b30000; // wave red — more visible!
+    font-weight: 600; // make it slightly bolder
+  }
+  }
+}
+
+.about-text {
+  flex: 0 0 55%;
+  max-width: 55%;
+  padding: 24px 32px;
+  background: rgba(18, 18, 18, 0.85); // much darker background
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff; // pure white text for readability
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); // subtle inner shadow for depth
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #fff; // pure white for H2
+    margin-bottom: 20px;
+
+    span {
+      color: #b30000; // wave red
     }
-  
-    .about-wrapper {
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: #f1f1f1; // lighter pure white for paragraph text
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+
+  .highlights {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+
+    li {
+      font-size: 1rem;
+      color: #b30000; // wave red icons
+      margin-bottom: 12px;
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
-      justify-content: space-between;
-      gap: 60px;
-    }
-  
-    .about-image {
-      flex: 1 1 40%;
-      text-align: center;
-  
-      img {
-        width: 100%;
-        max-width: 380px;
-        border-radius: 16px;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-      }
-  
-      .lawyer-info {
-        margin-top: 20px;
-  
-        h3 {
-          font-size: 1.8rem;
-          font-weight: 800;
-          color: #0d1b2a;
-          margin-bottom: 5px;
-        }
-  
-        .qualifications {
-          font-size: 1rem;
-          color: #444;
-          margin-bottom: 5px;
-          font-family: 'Segoe UI', sans-serif;
-        }
-  
-        .title {
-          font-size: 1.1rem;
-          font-weight: 600;
-          color: #007bff;
-          margin-bottom: 2px;
-          font-family: 'Segoe UI', sans-serif;
-        }
-  
-        .founder {
-          font-size: 0.9rem;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          color: #888;
-          font-family: 'Segoe UI', sans-serif;
-        }
-      }
-    }
-  
-    .about-text {
-      flex: 1 1 55%;
-      font-family: 'Segoe UI', sans-serif;
-  
-      h2 {
-        font-size: 2.5rem;
-        font-weight: 800;
-        color: #0d1b2a;
-        margin-bottom: 20px;
-  
-        span {
-          color: #007bff;
-        }
-      }
-  
-      p {
-        font-size: 1.1rem;
-        color: #333;
-        line-height: 1.8;
-        margin-bottom: 20px;
-        font-family: 'Segoe UI', sans-serif;
-      }
-  
-      .highlights {
-        list-style: none;
-        padding: 0;
-        margin-top: 10px;
-  
-        li {
-          font-size: 1rem;
-          color: #007bff;
-          margin-bottom: 12px;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
+      gap: 8px;
+      font-weight: 600; // make the list items bolder for readability
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateX(5px);
       }
     }
   }
-  
+}
+
+
+}

@@ -1,43 +1,58 @@
+// src/app/services/notification.service.ts
+
 import { Injectable } from '@angular/core';
 import { getMessaging, getToken, onMessage, Messaging } from 'firebase/messaging';
-import { firebaseApp } from '../config/firebase.config';
-import { Firestore, doc, setDoc } from '@angular/fire/firestore'; // ✅ ADD THIS
+import { firebaseApp } from '../config/firebase.config'; // Initialized app
+import { collection, doc, Firestore, setDoc } from '@angular/fire/firestore';
 
 @Injectable({ providedIn: 'root' })
 export class NotificationService {
   readonly VAPID_PUBLIC_KEY = 'BGQmd5LuQdZXtXgh7Rji6q6AONbiFS0aDltbB6kgC8NhykbjgkmNNR7uSRsttjQbJa3NzncklOyyYnqan-ifEVM';
 
-  private messaging: Messaging;
+  private messaging: Messaging | undefined;
 
-  constructor(private firestore: Firestore) { // ✅ Add Firestore injection
-    this.messaging = getMessaging(firebaseApp);
-    this.listenForMessages();
-  }
-
-  async requestPermissionAndToken() {
-    try {
-      const token = await getToken(this.messaging, {
-        vapidKey: this.VAPID_PUBLIC_KEY
-      });
-
-      console.log('[FCM Token]', token);
-
-      // ✅ Save token to Firestore:
-      const adminEmail = localStorage.getItem('adminEmail'); // Must be set on admin login
-      if (adminEmail) {
-        const tokenRef = doc(this.firestore, `adminFCMTokens/${adminEmail}`);
-        await setDoc(tokenRef, { token, updatedAt: new Date().toISOString() });
-        console.log('✅ FCM Token saved to Firestore!');
-      } else {
-        console.warn('⚠️ Admin email not found in localStorage, cannot save FCM token.');
-      }
-
-    } catch (err) {
-      console.error('FCM permission denied or error', err);
+  constructor(private firestore: Firestore) {
+    if (this.isBrowser()) {
+      this.messaging = getMessaging(firebaseApp); // ✅ use initialized app
+      this.listenForMessages();
+    } else {
+      console.log('[NotificationService] Skipping initialization on server');
     }
   }
 
+// src/app/services/notification.service.ts
+
+async requestPermissionAndTokenForAdmin() {
+  if (!this.isBrowser() || !this.messaging) return;
+
+  try {
+    const token = await getToken(this.messaging, {
+      vapidKey: this.VAPID_PUBLIC_KEY
+    });
+    console.log('[Admin FCM Token]', token);
+
+    if (token) {
+      // ✅ Now store using logged-in admin email as UID
+      const adminEmail = localStorage.getItem('adminEmail');
+      if (adminEmail) {
+        const tokenRef = collection(this.firestore, 'userTokens');
+        await setDoc(doc(tokenRef, adminEmail), { fcmToken: token });
+        console.log(`[NotificationService] Admin FCM Token saved for ${adminEmail} ✅`);
+      } else {
+        console.warn('[NotificationService] Admin email not found in localStorage, cannot save token ❌');
+      }
+    } else {
+      console.warn('[NotificationService] No FCM token obtained ❌');
+    }
+  } catch (err) {
+    console.error('FCM permission denied or error', err);
+  }
+}
+
+
   private listenForMessages() {
+    if (!this.isBrowser() || !this.messaging) return;
+
     onMessage(this.messaging, (payload) => {
       console.log('Foreground Message:', payload);
       const { title, body } = payload.notification ?? {};
@@ -45,5 +60,9 @@ export class NotificationService {
         new Notification(title, { body });
       }
     });
+  }
+
+  private isBrowser(): boolean {
+    return typeof window !== 'undefined' && typeof navigator !== 'undefined';
   }
 }

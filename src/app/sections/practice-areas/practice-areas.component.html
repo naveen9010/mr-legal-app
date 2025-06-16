@@ -1,24 +1,23 @@
 <section id="practice" class="practice-section" id="practice-areas">
-    <h2 class="section-title" data-aos="fade-up">Practice Areas</h2>
-    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
-      Explore our broad range of legal services organized for your convenience.
-    </p>
-  
-    <div class="practice-grid">
-      <div
-        class="practice-card"
-        *ngFor="let category of practiceCategories; let i = index"
-        data-aos="fade-up"
-        [attr.data-aos-delay]="i * 150"
-      >
-        <div class="icon">
-          <mat-icon>{{ category.icon }}</mat-icon>
-        </div>
-        <h3 class="card-title">{{ category.title }}</h3>
-        <ul class="area-list">
-          <li *ngFor="let area of category.areas">{{ area }}</li>
-        </ul>
+  <h2 class="section-title" data-aos="fade-up">Practice Areas</h2>
+  <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+    Explore our broad range of legal services organized for your convenience.
+  </p>
+
+  <div class="practice-grid">
+    <div
+      class="practice-card"
+      *ngFor="let category of practiceCategories; let i = index"
+      data-aos="fade-up"
+      [attr.data-aos-delay]="i * 150"
+    >
+      <div class="icon">
+        <mat-icon>{{ category.icon }}</mat-icon>
       </div>
+      <h3 class="card-title">{{ category.title }}</h3>
+      <ul class="area-list">
+        <li *ngFor="let area of category.areas">{{ area }}</li>
+      </ul>
     </div>
-  </section>
-  
+  </div>
+</section>

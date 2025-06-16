@@ -20,16 +20,21 @@ export class AdminLoginComponent {
   constructor(private auth: Auth, private router: Router, private snackBar: MatSnackBar) {}
 
   async login() {
-  try {
-    const userCredential = await signInWithEmailAndPassword(this.auth, this.email, this.password);
+    try {
+      const userCredential = await signInWithEmailAndPassword(this.auth, this.email, this.password);
 
-    // ✅ Store admin email in localStorage
-    localStorage.setItem('adminEmail', userCredential.user.email || this.email);
+      // ✅ Store admin email in localStorage
+      localStorage.setItem('adminEmail', userCredential.user.email || this.email);
 
-    this.snackBar.open('Login Successful!', 'Close', { duration: 3000 });
-    this.router.navigate(['/admin-dashboard']);
-  } catch (error: any) {
-    this.loginError = error.message || 'Login failed!';
+      this.snackBar.open('Login Successful!', 'Close', { duration: 3000 });
+      this.router.navigate(['/admin-dashboard']);
+    } catch (error: any) {
+      this.loginError = error.message || 'Login failed!';
+    }
   }
-}
+
+  goHome(): void {
+  this.router.navigate(['/']);
+  }
+
 }

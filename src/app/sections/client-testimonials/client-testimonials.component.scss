@@ -1,102 +1,101 @@
 .testimonials-section {
-    background: linear-gradient(to right, #f3f6fb, #95a6be);
-    padding: 100px 20px;
-    text-align: center;
-    font-family: 'Segoe UI', sans-serif;
-  
-    .content-wrapper {
-      max-width: 1200px;
-      margin: 0 auto;
+  background: linear-gradient(to bottom, #1a1d23, #2c2f36, #f2f2f2);
+  padding: 100px 20px;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+
+  .content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #f9f9f9; // changed from dark to light
+    margin-bottom: 60px;
+  }
+
+  .testimonials-carousel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    justify-items: center;
+  }
+
+  .testimonial-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px 30px;
+    max-width: 400px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    position: relative;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-10px);
     }
-  
-    .section-title {
-      font-size: 2.8rem;
-      font-weight: 800;
-      color: #1b1b1b;
-      margin-bottom: 60px;
+
+    .quote-icon {
+      font-size: 40px;
+      color: #b30000; // wave red color
+      position: absolute;
+      top: 25px;
+      left: 30px;
+      opacity: 0.2;
     }
-  
-    .testimonials-carousel {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 40px;
-      justify-items: center;
+
+    .testimonial-text {
+      font-style: italic;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 30px;
     }
-  
-    .testimonial-card {
-      background: #fff;
-      border-radius: 20px;
-      padding: 40px 30px;
-      max-width: 400px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-      position: relative;
-      transition: transform 0.3s ease;
-  
-      &:hover {
-        transform: translateY(-10px);
-      }
-  
-      .quote-icon {
-        font-size: 40px;
-        color: #007bff;
-        position: absolute;
-        top: 25px;
-        left: 30px;
-        opacity: 0.2;
-      }
-  
-      .testimonial-text {
-        font-style: italic;
-        font-size: 1.2rem;
-        line-height: 1.6;
-        color: #333;
-        margin-bottom: 30px;
-      }
-  
-      .testimonial-footer {
-        display: flex;
-        align-items: center;
-        justify-content: start;
-        gap: 15px;
-      }
-  
-      .avatar-ring {
-        background: linear-gradient(135deg, #007bff, #00c6ff);
-        padding: 3px;
+
+    .testimonial-footer {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      gap: 15px;
+    }
+
+    .avatar-ring {
+      background: linear-gradient(135deg, #b30000, #c62828); // wave red gradient
+      padding: 3px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .avatar {
+        width: 48px;
+        height: 48px;
+        background-color: #fff;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-  
-        .avatar {
-          width: 48px;
-          height: 48px;
-          background-color: #fff;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #007bff;
-          font-weight: 700;
-          font-size: 1.1rem;
-        }
+        color: #b30000; // wave red text
+        font-weight: 700;
+        font-size: 1.1rem;
       }
-  
-      .author-info {
-        text-align: left;
-  
-        .author-name {
-          font-weight: 700;
-          font-size: 1rem;
-          display: block;
-          color: #000;
-        }
-  
-        .author-case {
-          font-size: 0.9rem;
-          color: #666;
-        }
+    }
+
+    .author-info {
+      text-align: left;
+
+      .author-name {
+        font-weight: 700;
+        font-size: 1rem;
+        display: block;
+        color: #000;
+      }
+
+      .author-case {
+        font-size: 0.9rem;
+        color: #666;
       }
     }
   }
-  
+}

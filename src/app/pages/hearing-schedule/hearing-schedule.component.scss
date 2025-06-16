@@ -1,37 +1,185 @@
-.hearing-form {
-  max-width: 500px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+/* Premium Card Styling */
+.glass-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+  margin-bottom: 32px;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
-  input, textarea {
-    padding: 8px;
-    font-size: 16px;
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 28px;
+    background: linear-gradient(90deg, #b30000, #c62828);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(183, 28, 28, 0.4);
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+
+    i {
+      font-size: 1.6rem;
+    }
   }
 
-  button {
-    background: #f4a261;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
+  .card-body {
+    padding: 24px 28px;
   }
 }
 
-.hearing-list {
-  max-width: 600px;
-  margin: 20px auto;
-  ul {
-    list-style: none;
-    padding: 0;
+/* Premium Section Title */
+.section-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+  padding: 8px 0;
+  border-bottom: 2px solid #b30000;
+  letter-spacing: 0.5px;
+}
+
+/* Premium Form Grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.95rem;
+  color: #222;
+
+  label {
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #444;
   }
-  li {
-    margin-bottom: 12px;
-    padding: 10px;
-    background: #f9f9f9;
-    border-left: 4px solid #f4a261;
+
+  input,
+  select,
+  textarea {
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+
+    &:focus {
+      outline: 2px solid #b30000;
+      box-shadow: 0 0 12px rgba(183, 28, 28, 0.6);
+    }
+  }
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+.btn-primary {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  border: none !important;
+  background: linear-gradient(90deg, #b30000, #c62828) !important;
+  padding: 12px 24px !important;
+  border-radius: 10px !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  transition: all 0.3s ease !important;
+
+  &:hover {
+    background: linear-gradient(90deg, #8b0000, #a60000) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 16px rgba(183, 28, 28, 0.5) !important;
+  }
+
+  &:disabled {
+    background: #666 !important;
+    cursor: not-allowed !important;
+  }
+}
+
+/* Premium Table Styling */
+.full-width-table {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* More premium */
+  border: 1px solid rgba(0, 0, 0, 0.05); /* Light border to blend */
+
+  .mat-header-row {
+    background-color: #fafafa;
+    border-bottom: 2px solid #e0e0e0;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #222;
+  }
+
+  .mat-row {
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: rgba(183, 28, 28, 0.05); /* Subtle MR Legal red hover */
+    }
+  }
+
+  .mat-cell,
+  .mat-header-cell {
+    padding: 14px 20px;
+    font-size: 0.95rem;
+    color: #333;
+  }
+}
+
+/* Premium Badges */
+.status-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  &.Scheduled {
+    background: #1976d2;
+  }
+  &.Completed {
+    background: #388e3c;
+  }
+  &.Cancelled {
+    background: #d32f2f;
+  }
+  &.Adjourned {
+    background: #fbc02d;
+    color: #222;
+  }
+}
+
+/* Premium Action Buttons */
+.mat-icon-button {
+  color: #555;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  border-radius: 50%;
+
+  &:hover {
+    transform: scale(1.2);
+    background-color: rgba(183, 28, 28, 0.08);
   }
 }
