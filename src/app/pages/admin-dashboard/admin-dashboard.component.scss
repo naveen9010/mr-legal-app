@@ -1,0 +1,47 @@
+.admin-dashboard-header {
+  background: linear-gradient(90deg, #1a1d23, #2c2f36);
+  color: #f9f9f9;
+  padding: 20px 30px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-bottom: 3px solid #b30000; /* wave red accent */
+  border-radius: 8px;
+  font-family: 'Segoe UI', sans-serif;
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* space between logo and logout */
+    gap: 12px;
+
+    i {
+      font-size: 1.8rem;
+      color: #b30000; /* wave red icon */
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin: 0;
+      color: #f9f9f9;
+      flex: 1;
+    }
+
+    .logout-btn {
+      background: linear-gradient(90deg, #b30000, #c62828);
+      border: none;
+      color: #fff;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: linear-gradient(90deg, #8b0000, #a60000);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(183, 28, 28, 0.4);
+      }
+    }
+  }
+}

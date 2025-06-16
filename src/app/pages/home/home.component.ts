@@ -30,6 +30,6 @@ export class HomeComponent {
     constructor(private notificationService: NotificationService) {}
 
     ngOnInit(): void {
-    this.notificationService.requestPermissionAndToken(); // <-- Request token once app loads
+    //this.notificationService.requestPermissionAndToken(); // <-- Request token once app loads
   }
 }

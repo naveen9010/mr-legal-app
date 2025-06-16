@@ -1,26 +1,27 @@
 <section id="why-choose" class="why-choose-section">
-    <h2 class="section-title">Why Choose MR Legal Associates?</h2>
-    <p class="section-subtitle">
-      Over 25 years of legal excellence — trusted by 100+ satisfied clients.
-    </p>
-    <p class="trust-badge">★ Rated 4.9/5 by real clients across Telangana and Andhra Pradhesh</p>
-  
-    <div class="highlights-grid">
-      <div
-        class="highlight-card"
-        *ngFor="let item of highlights; let i = index"
-        [attr.data-aos]="'zoom-in-up'"
-        [attr.data-aos-delay]="i * 200"
-        data-aos-easing="ease-out-cubic"
-        data-aos-duration="1000"
-        [attr.data-index]="'0' + (i + 1)">
-        <h3 class="highlight-title">{{ item.title }}</h3>
-        <p class="highlight-desc">{{ item.description }}</p>
-      </div>
+  <h2 class="section-title" data-aos="fade-up">Why Choose MR Legal Associates?</h2>
+  <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+    Over 25 years of legal excellence — trusted by 100+ satisfied clients.
+  </p>
+  <p class="trust-badge" data-aos="fade-up" data-aos-delay="200">
+    ★ Rated 4.9/5 by real clients across Telangana and Andhra Pradesh
+  </p>
+
+  <div class="highlights-grid">
+    <div
+      class="highlight-card"
+      *ngFor="let item of highlights; let i = index"
+      [attr.data-aos]="'zoom-in-up'"
+      [attr.data-aos-delay]="i * 200"
+      data-aos-easing="ease-out-cubic"
+      data-aos-duration="1000"
+      [attr.data-index]="'0' + (i + 1)">
+      <h3 class="highlight-title">{{ item.title }}</h3>
+      <p class="highlight-desc">{{ item.description }}</p>
     </div>
-  
-    <blockquote class="client-quote">
-      “Their clarity and commitment gave me confidence from day one.” — A. Sharma
-    </blockquote>
-  </section>
-  
+  </div>
+
+  <blockquote class="client-quote" data-aos="fade-up" data-aos-delay="400">
+    “Their clarity and commitment gave me confidence from day one.” — P. Manish
+  </blockquote>
+</section>

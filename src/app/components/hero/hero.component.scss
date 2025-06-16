@@ -1,149 +1,124 @@
 .hero-section {
   position: relative;
   width: 100%;
-  height: 100vh;
-  height: 100dvh; // ✅ Use dynamic viewport height for modern mobile browsers
+  min-height: 100vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  @supports (-webkit-touch-callout: none) {
-    height: -webkit-fill-available; // iOS Safari support
-  }
+  align-items: center;
+  background-color: #1A1D23; // Deep dark gray with red tone
+  text-align: center;
+  color: #fff;
+  padding: 100px 16px 40px; // top padding to avoid overlapping header
 }
 
-
-.hero-backgrounds {
+.hero-background-shape {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 100%;
   z-index: 1;
-}
 
-.hero-bg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
   opacity: 0;
-  transition: opacity 1.5s ease-in-out;
-  z-index: 1;
+  transform: translateY(100px);
+  animation: waveIn 1s ease-out 1s forwards;
 
-  &.active {
-    opacity: 1;
-    z-index: 2;
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
   }
-}
 
-@media (max-width: 768px) {
-  .hero-bg {
-    background-size: contain;
-    background-position: top;
-    background-repeat: no-repeat;
+  path {
+    fill: #b30000; // Pure Red wave
   }
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.75));
-  z-index: 3;
 }
 
 .hero-content {
-  z-index: 4;
   position: relative;
-  height: 100%;
+  z-index: 2;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  font-family: 'Segoe UI', sans-serif;
-  text-align: center;
-  color: white;
-  padding: 0 16px;
+  justify-content: center;
 }
 
 .hero-title {
-  font-size: 2.8rem;
+  font-size: 2.4rem; // slightly smaller
   font-weight: 700;
   max-width: 90vw;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  min-height: 80px; // 👉 Anti-shaking fix (prevents layout shift while typing)
+
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeSlideIn 1s ease-out forwards;
 
   @media (max-width: 768px) {
     font-size: 1.8rem;
   }
 
   @media (max-width: 480px) {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
 }
 
-.slide-dots {
-  position: absolute;
-  top: 50%;
-  left: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  transform: translateY(-50%);
-  z-index: 5;
+.hero-illustration {
+  max-width: 500px; // reduced size to avoid occupying entire screen
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 0;
 
-  .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.4);
-    transition: all 0.3s ease;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: scaleIn 1s ease-out 0.5s forwards;
 
-    &.active {
-      background: white;
-      transform: scale(1.4);
-    }
+  svg {
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 350px;
+    padding: 16px 0;
+    transform: scale(0.8);
+    animation: scaleIn 1s ease-out 0.5s forwards;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 300px;
+    padding: 12px 0;
+    transform: scale(0.8);
+    animation: scaleIn 1s ease-out 0.5s forwards;
   }
 }
 
-.scroll-indicator {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  animation: bounce 2s infinite;
-
-  .scroll-label {
-    color: #fff;
-    font-size: 14px;
-  }
-
-  .scroll-arrow {
-    animation: blink 1.5s infinite;
-  }
+#typewriter-text {
+  transition: opacity 0.3s ease;
+  display: inline-block;
 }
 
-@keyframes bounce {
-  0%, 100% {
-    transform: translateX(-50%) translateY(0);
-  }
-  50% {
-    transform: translateX(-50%) translateY(6px);
-  }
-}
+// Animations
 
-@keyframes blink {
-  0%, 100% {
+@keyframes fadeSlideIn {
+  to {
     opacity: 1;
+    transform: translateY(0);
   }
-  50% {
-    opacity: 0.3;
+}
+
+@keyframes scaleIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes waveIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
