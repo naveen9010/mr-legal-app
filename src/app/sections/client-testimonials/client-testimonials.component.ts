@@ -10,17 +10,17 @@ import { Component } from '@angular/core';
 export class ClientTestimonialsComponent {
   testimonials = [
     {
-      name: 'Rajesh Kumar',
+      name: 'Naveen S',
       caseType: 'Civil Litigation',
       feedback: 'The legal team handled my case professionally and kept me informed throughout. Highly recommended!'
     },
     {
-      name: 'Anjali Verma',
+      name: 'Kamala K',
       caseType: 'Family Law',
       feedback: 'Supportive and knowledgeable lawyers who really care about their clients.'
     },
     {
-      name: 'Imran Sheikh',
+      name: 'Gautham M',
       caseType: 'Property Dispute',
       feedback: 'They resolved my long-standing dispute efficiently. Very grateful to MR Legal Associates.'
     }
