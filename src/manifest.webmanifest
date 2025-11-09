@@ -1,7 +1,8 @@
 {
    "gcm_sender_id": "103953800507",
-  "name": "mr-legal-associates",
-  "short_name": "mr-legal-associates",
+  "name": "MR Legal Associates - Professional Legal Services",
+  "short_name": "MR Legal",
+  "description": "MR Legal Associates is a law firm committed to providing top-notch legal services with integrity and excellence.",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
