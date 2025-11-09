@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
+import { CalendarService } from '../../services/calendar.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -17,7 +18,12 @@ export class AdminLoginComponent {
   password = '';
   loginError = '';
 
-  constructor(private auth: Auth, private router: Router, private snackBar: MatSnackBar) {}
+  constructor(
+    private auth: Auth, 
+    private router: Router, 
+    private snackBar: MatSnackBar,
+    private calendarService: CalendarService
+  ) {}
 
   async login() {
     try {
@@ -27,6 +33,15 @@ export class AdminLoginComponent {
       localStorage.setItem('adminEmail', userCredential.user.email || this.email);
 
       this.snackBar.open('Login Successful!', 'Close', { duration: 3000 });
+      
+      // Initialize Google authentication once at login
+      try {
+        await this.calendarService.initializeGoogleAuth();
+        console.log('✅ Google Calendar authentication initialized');
+      } catch (error) {
+        console.error('❌ Error initializing Google Calendar:', error);
+      }
+      
       this.router.navigate(['/admin-dashboard']);
     } catch (error: any) {
       this.loginError = error.message || 'Login failed!';

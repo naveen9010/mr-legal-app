@@ -1,0 +1,33 @@
+<div class="public-calendar-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <div class="calendar-title">
+          <h2>Available Consultation Slots</h2>
+          <div class="legend">
+            <div class="legend-item">
+              <div class="color-box available"></div>
+              <span>Available Slots</span>
+            </div>
+            <div class="legend-item">
+              <div class="color-box unavailable"></div>
+              <span>Unavailable</span>
+            </div>
+          </div>
+        </div>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="calendar-wrapper">
+        <full-calendar #calendar [options]="calendarOptions"></full-calendar>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="calendar-instructions">
+        <p><mat-icon>info</mat-icon> Click on a green slot to book a consultation</p>
+        <p><mat-icon>event_available</mat-icon> All times are in your local timezone</p>
+        <p><mat-icon>schedule</mat-icon> Consultations are 60 minutes long</p>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

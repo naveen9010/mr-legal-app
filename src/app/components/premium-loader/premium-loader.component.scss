@@ -1,0 +1,124 @@
+.premium-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  
+  &.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    padding: 0;
+  }
+  
+  .loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    .spinner-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      
+      .outer-spinner {
+        position: relative;
+        animation: rotate 3s linear infinite;
+      }
+      
+      .inner-spinner {
+        position: absolute;
+        animation: rotate-reverse 2s linear infinite;
+      }
+      
+      .logo-container {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        .logo {
+          width: 70%;
+          height: 70%;
+          object-fit: contain;
+          border-radius: 50%;
+          background-color: white;
+          padding: 5px;
+          box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+      }
+    }
+    
+    .loading-text {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #3f51b5;
+      margin-top: 10px;
+      text-align: center;
+      
+      .overlay & {
+        color: white;
+      }
+    }
+  }
+  
+  &.small {
+    .loading-text {
+      font-size: 0.9rem;
+    }
+  }
+  
+  &.large {
+    .loading-text {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate-reverse {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+/* Shimmer effect for text */
+.loading-text {
+  background: linear-gradient(90deg, #f0f0f0, #3f51b5, #f0f0f0);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  .overlay & {
+    background: linear-gradient(90deg, #cccccc, #ffffff, #cccccc);
+    background-size: 200% 100%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}

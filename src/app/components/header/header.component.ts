@@ -1,14 +1,11 @@
 import { AfterViewInit, Component, HostListener, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, MatToolbarModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
@@ -67,7 +64,7 @@ goToAdminLogin(event?: Event): void {
 
   checkScreenSize() {
     if (isPlatformBrowser(this.platformId)) {
-      this.isMobile = window.innerWidth <= 768;
+      this.isMobile = window.innerWidth <= 1024; // Changed breakpoint for better tablet support
     }
   }
 

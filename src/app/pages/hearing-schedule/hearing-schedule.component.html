@@ -1,12 +1,16 @@
-<!-- Section Title -->
-<div class="section-title">Manage Hearing Schedules</div>
+<div class="hearing-schedule-container">
+  <!-- Premium Loader -->
+  <app-premium-loader *ngIf="isLoading" [overlay]="true" text="Processing your request..."></app-premium-loader>
 
-<!-- Add / Manage Hearing Section -->
-<div class="glass-card mb-5">
-  <div class="card-header">
-    <i class="fas fa-calendar-plus"></i>
-    <h2>Add / Manage Hearing</h2>
-  </div>
+  <!-- Section Title -->
+  <div class="section-title">Manage Hearing Schedules</div>
+
+  <!-- Add / Manage Hearing Section -->
+  <div class="glass-card mb-5">
+    <div class="card-header">
+      <i class="fas fa-calendar-plus"></i>
+      <h2>Add / Manage Hearing</h2>
+    </div>
 
   <div class="card-body">
     <form class="form-grid">
@@ -124,4 +128,6 @@
 
     <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
   </div>
+</div>
+
 </div>

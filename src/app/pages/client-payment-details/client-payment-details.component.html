@@ -1,0 +1,200 @@
+<div class="client-payment-container">
+  <!-- Section Title -->
+  <div class="section-title">Manage Client Payment Details</div>
+
+  <!-- Add / Manage Payment Section -->
+  <div class="glass-card mb-5">
+    <div class="card-header">
+      <i class="fas fa-credit-card"></i>
+      <h2>{{ editingPayment ? 'Update Payment' : 'Add New Payment' }}</h2>
+    </div>
+
+    <div class="card-body">
+      <form class="form-grid">
+        <div class="form-group">
+          <label>Client Name *</label>
+          <input type="text" [(ngModel)]="clientName" name="clientName" required />
+        </div>
+        <div class="form-group">
+          <label>Client Phone</label>
+          <input type="tel" [(ngModel)]="clientPhone" name="clientPhone" placeholder="+91XXXXXXXXXX" />
+        </div>
+        <div class="form-group">
+          <label>Case Title *</label>
+          <input type="text" [(ngModel)]="caseTitle" name="caseTitle" required />
+        </div>
+        <div class="form-group">
+          <label>Case Number</label>
+          <input type="text" [(ngModel)]="caseNumber" name="caseNumber" />
+        </div>
+        <div class="form-group">
+          <label>Payment Amount *</label>
+          <input type="number" [(ngModel)]="paymentAmount" name="paymentAmount" min="0" step="0.01" required />
+        </div>
+        <div class="form-group">
+          <label>Payment Date *</label>
+          <input type="date" [(ngModel)]="paymentDate" name="paymentDate" required />
+        </div>
+        <div class="form-group">
+          <label>Payment Method</label>
+          <select [(ngModel)]="paymentMethod" name="paymentMethod">
+            <option value="Cash">Cash</option>
+            <option value="Check">Check</option>
+            <option value="Bank Transfer">Bank Transfer</option>
+            <option value="UPI">UPI</option>
+            <option value="Credit Card">Credit Card</option>
+            <option value="Debit Card">Debit Card</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Payment Type</label>
+          <select [(ngModel)]="paymentType" name="paymentType">
+            <option value="Initial Payment">Initial Payment</option>
+            <option value="Installment">Installment</option>
+            <option value="Partial Payment">Partial Payment</option>
+            <option value="Final Payment">Final Payment</option>
+            <option value="Refund">Refund</option>
+            <option value="Additional Charges">Additional Charges</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Transaction Reference</label>
+          <input type="text" [(ngModel)]="transactionReference" name="transactionReference" placeholder="Check number, UPI ref, etc." />
+        </div>
+        <div class="form-group">
+          <label>Total Case Fee</label>
+          <input type="number" [(ngModel)]="totalCaseFee" name="totalCaseFee" min="0" step="0.01" />
+        </div>
+        <div class="form-group full-width">
+          <label>Payment Notes</label>
+          <textarea rows="2" [(ngModel)]="paymentNotes" name="paymentNotes" placeholder="Additional notes about this payment..."></textarea>
+        </div>
+        <div class="form-group full-width text-end">
+          <button
+            type="button"
+            class="btn-secondary me-2"
+            *ngIf="editingPayment"
+            (click)="cancelEdit()">
+            <i class="fas fa-times"></i> Cancel
+          </button>
+          <button
+            type="button"
+            class="btn-primary"
+            (click)="editingPayment ? updatePayment() : addPayment()"
+            [disabled]="!clientName || !caseTitle || !paymentAmount || !paymentDate || isLoading">
+            <i class="fas fa-{{ editingPayment ? 'save' : 'plus-circle' }}"></i> 
+            {{ editingPayment ? 'Update Payment' : 'Add Payment' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Payment Summary Cards -->
+  <div class="summary-cards mb-4">
+    <div class="summary-card">
+      <div class="summary-icon">
+        <i class="fas fa-dollar-sign"></i>
+      </div>
+      <div class="summary-content">
+        <h3>Total Received</h3>
+        <p class="amount">₹{{ getTotalReceived() | number:'1.2-2' }}</p>
+      </div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-icon">
+        <i class="fas fa-file-invoice"></i>
+      </div>
+      <div class="summary-content">
+        <h3>Total Payments</h3>
+        <p class="count">{{ payments.data.length }}</p>
+      </div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-icon">
+        <i class="fas fa-calendar-month"></i>
+      </div>
+      <div class="summary-content">
+        <h3>This Month</h3>
+        <p class="amount">₹{{ getThisMonthTotal() | number:'1.2-2' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Client Payments Table -->
+  <div class="glass-card">
+    <div class="card-header">
+      <i class="fas fa-list"></i>
+      <h2>Client Payment Records</h2>
+      <div class="search-container">
+        <mat-form-field class="search-field" appearance="outline">
+          <mat-label>Search payments...</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Client name, case title, etc.">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <table mat-table [dataSource]="payments" matSort class="mat-elevation-z4 full-width-table">
+
+        <ng-container matColumnDef="clientName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Client Name </th>
+          <td mat-cell *matCellDef="let payment"> {{ payment.clientName }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="caseTitle">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Case Title </th>
+          <td mat-cell *matCellDef="let payment"> {{ payment.caseTitle }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="paymentAmount">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+          <td mat-cell *matCellDef="let payment"> 
+            <span class="amount-cell">₹{{ payment.paymentAmount | number:'1.2-2' }}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="paymentDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Payment Date </th>
+          <td mat-cell *matCellDef="let payment"> {{ payment.paymentDate | date:'mediumDate' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="paymentMethod">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Method </th>
+          <td mat-cell *matCellDef="let payment"> 
+            <span class="method-badge">{{ payment.paymentMethod }}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="paymentType">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+          <td mat-cell *matCellDef="let payment">
+            <span class="type-badge" [ngClass]="payment.paymentType">{{ payment.paymentType }}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let payment">
+            <button mat-icon-button color="primary" (click)="editPayment(payment)" matTooltip="Edit Payment">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="accent" (click)="viewPaymentDetails(payment)" matTooltip="View Details">
+              <mat-icon>visibility</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deletePayment(payment.id)" matTooltip="Delete">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+</div>

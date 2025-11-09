@@ -1,100 +1,360 @@
+/* Modern About Us Section - Hero Style */
 .about-section {
-  background: linear-gradient(to bottom, #1a1d23, #2c2f36, #f2f2f2);
-  padding: 100px 20px;
-  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+  padding: var(--space-32) 0;
+  background: linear-gradient(
+    135deg,
+    #1e293b 0%,
+    #334155 25%,
+    #475569 50%,
+    #334155 75%,
+    #1e293b 100%
+  );
+  font-family: var(--font-primary);
+  color: white;
+  overflow: hidden;
+
+  /* Add overlay similar to hero */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.8) 0%,
+      rgba(30, 41, 59, 0.7) 25%,
+      rgba(51, 65, 85, 0.6) 50%,
+      rgba(30, 41, 59, 0.7) 75%,
+      rgba(15, 23, 42, 0.8) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
 
   .container {
     max-width: 1200px;
     margin: auto;
-  }
+    padding: 0 var(--space-6);
+    position: relative;
+    z-index: 2;
 
-  .about-wrapper {
-  display: flex;
-  flex-wrap: nowrap; // force side-by-side on desktop
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 40px;
-
-  @media (max-width: 991px) {
-    flex-wrap: wrap; // stack on mobile
-  }
-}
-
-.about-image {
-  flex: 0 0 40%;
-  max-width: 40%;
-  img {
-    width: 100%;
-    border-radius: 16px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .lawyer-info {
-    margin-top: 20px;
-    h3 { font-size: 1.8rem; font-weight: 800; color: #f9f9f9; margin-bottom: 5px; }
-    .qualifications { font-size: 1rem; color: #ddd; margin-bottom: 5px; }
-    .title { font-size: 1.1rem; font-weight: 600; color: #b30000; margin-bottom: 2px; }
-    .founder {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #b30000; // wave red — more visible!
-    font-weight: 600; // make it slightly bolder
-  }
-  }
-}
-
-.about-text {
-  flex: 0 0 55%;
-  max-width: 55%;
-  padding: 24px 32px;
-  background: rgba(18, 18, 18, 0.85); // much darker background
-  border-radius: 16px;
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #fff; // pure white text for readability
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); // subtle inner shadow for depth
-
-  h2 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #fff; // pure white for H2
-    margin-bottom: 20px;
-
-    span {
-      color: #b30000; // wave red
+    @media (min-width: 768px) {
+      padding: 0 var(--space-8);
     }
   }
 
-  p {
-    font-size: 1.1rem;
-    color: #f1f1f1; // lighter pure white for paragraph text
-    line-height: 1.8;
-    margin-bottom: 20px;
+  .about-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    align-items: center;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 1.2fr;
+      gap: var(--space-16);
+    }
+
+    @media (min-width: 1024px) {
+      gap: var(--space-20);
+    }
   }
 
-  .highlights {
-    list-style: none;
-    padding: 0;
-    margin-top: 10px;
-
-    li {
-      font-size: 1rem;
-      color: #b30000; // wave red icons
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600; // make the list items bolder for readability
-      transition: transform 0.3s ease;
-
+  .about-image {
+    position: relative;
+    
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-2xl);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border: 3px solid rgba(255, 255, 255, 0.2);
+      transition: transform var(--transition-base);
+      
       &:hover {
-        transform: translateX(5px);
+        transform: scale(1.02);
+      }
+    }
+
+    .lawyer-info {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      margin-top: var(--space-6);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      position: relative;
+      
+      /* Add subtle gradient border */
+      &::before {
+        content: '';
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        right: -1px;
+        bottom: -1px;
+        background: linear-gradient(135deg, rgba(31, 212, 164, 0.2), rgba(31, 212, 164, 0.1));
+        border-radius: var(--radius-xl);
+        z-index: -1;
+        opacity: 0.6;
+      }
+
+      h3 { 
+        font-family: var(--font-display);
+        font-size: var(--text-2xl); 
+        font-weight: 400; 
+        color: white; 
+        margin-bottom: var(--space-2);
+        letter-spacing: -0.025em;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+      
+      .qualifications { 
+        font-size: var(--text-base); 
+        color: rgba(255, 255, 255, 0.8); 
+        margin-bottom: var(--space-2);
+        font-weight: 500;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      }
+      
+      .title { 
+        font-size: var(--text-lg); 
+        font-weight: 600; 
+        color: #1FD4A4; 
+        margin-bottom: var(--space-1);
+        text-shadow: 0 2px 10px rgba(31, 212, 164, 0.4);
+      }
+      
+      .founder {
+        font-size: var(--text-sm);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: white;
+        font-weight: 600;
+        padding: var(--space-2) var(--space-4);
+        background: linear-gradient(135deg, #1FD4A4, #1AB394);
+        border-radius: var(--radius-md);
+        display: inline-block;
+        box-shadow: 0 4px 15px rgba(31, 212, 164, 0.3);
+        transition: all var(--transition-base);
+        
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(31, 212, 164, 0.4);
+        }
+      }
+    }
+  }
+
+  .about-text {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-10);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    position: relative;
+    
+    /* Modern gradient border effect */
+    &::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      right: -1px;
+      bottom: -1px;
+      background: linear-gradient(135deg, 
+        rgba(31, 212, 164, 0.2), 
+        rgba(31, 212, 164, 0.1));
+      border-radius: var(--radius-2xl);
+      z-index: -1;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: var(--text-4xl);
+      font-weight: 400;
+      color: white;
+      margin-bottom: var(--space-6);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+
+      span {
+        color: #1FD4A4;
+        font-style: italic;
+        position: relative;
+        text-shadow: 0 2px 15px rgba(31, 212, 164, 0.4);
+        
+        /* Add subtle underline decoration */
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -4px;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: linear-gradient(90deg, #1FD4A4, #4ade80);
+          border-radius: 2px;
+          opacity: 0.6;
+        }
+      }
+
+      @media (max-width: 767px) {
+        font-size: var(--text-3xl);
+        text-align: center;
+      }
+    }
+
+    p {
+      font-size: var(--text-base);
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.7;
+      margin-bottom: var(--space-5);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      
+      &:last-of-type {
+        margin-bottom: var(--space-8);
+      }
+    }
+
+    .highlights {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+
+      li {
+        font-size: var(--text-base);
+        color: rgba(255, 255, 255, 0.95);
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        font-weight: 500;
+        padding: var(--space-3) var(--space-4);
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-lg);
+        transition: all var(--transition-base);
+        position: relative;
+        overflow: hidden;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+
+        /* Add subtle shine effect */
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255, 255, 255, 0.1), 
+            transparent);
+          transition: left var(--transition-slow);
+        }
+
+        &:hover {
+          transform: translateY(-2px);
+          background: rgba(31, 212, 164, 0.2);
+          border-color: rgba(31, 212, 164, 0.3);
+          box-shadow: 0 8px 25px rgba(31, 212, 164, 0.3);
+
+          &::before {
+            left: 100%;
+          }
+        }
+
+        /* Icon styling */
+        &::after {
+          content: attr(data-icon);
+          font-size: var(--text-xl);
+          color: #1FD4A4;
+          flex-shrink: 0;
+          width: 32px;
+          height: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(31, 212, 164, 0.2);
+          border-radius: 50%;
+          border: 2px solid rgba(31, 212, 164, 0.3);
+          transition: all var(--transition-base);
+        }
+
+        &:hover::after {
+          background: #1FD4A4;
+          color: white;
+          transform: scale(1.1);
+          box-shadow: 0 4px 15px rgba(31, 212, 164, 0.4);
+        }
       }
     }
   }
 }
 
+/* Mobile optimizations */
+@media (max-width: 767px) {
+  .about-section {
+    padding: var(--space-24) 0;
+  }
+  
+  .about-wrapper {
+    gap: var(--space-10);
+  }
+  
+  .about-text {
+    padding: var(--space-8);
+  }
+  
+  .about-image .lawyer-info {
+    padding: var(--space-5);
+    margin-top: var(--space-5);
+  }
+}
 
+/* Animation enhancements */
+.about-image,
+.about-text {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.about-image {
+  animation-delay: 0.2s;
+}
+
+.about-text {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .about-image,
+  .about-text {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .about-image img:hover,
+  .highlights li:hover {
+    transform: none;
+  }
 }

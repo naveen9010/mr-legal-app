@@ -1,0 +1,109 @@
+.public-calendar-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.calendar-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  
+  h2 {
+    margin: 0;
+    color: #333;
+  }
+}
+
+.legend {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    
+    .color-box {
+      width: 15px;
+      height: 15px;
+      border-radius: 3px;
+      
+      &.available {
+        background-color: #43a047; // Green
+      }
+      
+      &.unavailable {
+        background-color: rgba(211, 47, 47, 0.3); // Light red
+      }
+    }
+  }
+}
+
+.calendar-wrapper {
+  height: 700px;
+  margin-bottom: 20px;
+  
+  // Make the calendar responsive
+  ::ng-deep {
+    .fc {
+      height: 100%;
+      
+      .fc-toolbar {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      
+      .fc-event {
+        cursor: pointer;
+        border-radius: 4px;
+        
+        &:hover {
+          filter: brightness(0.9);
+        }
+      }
+    }
+  }
+}
+
+.calendar-instructions {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  
+  p {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+    
+    mat-icon {
+      font-size: 18px;
+      height: 18px;
+      width: 18px;
+      line-height: 18px;
+    }
+  }
+}
+
+// Responsive styles
+@media (max-width: 768px) {
+  .calendar-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .legend {
+    margin-top: 10px;
+  }
+  
+  .calendar-wrapper {
+    height: 500px;
+  }
+}

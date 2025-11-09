@@ -16,6 +16,25 @@
         <input type="text" name="name" placeholder="Full Name" [(ngModel)]="formData.name" required>
         <input type="email" name="email" placeholder="Email Address" [(ngModel)]="formData.email" required>
         <input type="tel" name="phone" placeholder="Phone Number" [(ngModel)]="formData.phone" required>
+        
+        <div class="date-time-container">
+          <div class="date-field">
+            <label for="consultDate">Preferred Date:</label>
+            <input type="date" id="consultDate" name="consultDate" [(ngModel)]="formData.date" required>
+          </div>
+          <div class="time-field">
+            <label for="consultTime">Preferred Time:</label>
+            <input type="time" id="consultTime" name="consultTime" [(ngModel)]="formData.time" required>
+          </div>
+        </div>
+        
+        <div class="available-slots-link">
+          <a (click)="viewAvailableSlots()" title="Click to see all available consultation slots">
+            <mat-icon>event_available</mat-icon> View available consultation slots
+          </a>
+          <small>Click to see our calendar with all available time slots</small>
+        </div>
+        
         <textarea name="message" rows="4" placeholder="Tell us about your case" [(ngModel)]="formData.message" required></textarea>
         <button type="submit" [disabled]="!consultForm.valid">
           <span>📅</span> Request Consultation

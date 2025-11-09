@@ -1,0 +1,43 @@
+<!-- Premium Loader -->
+<app-premium-loader *ngIf="isLoading" [overlay]="true" text="Loading calendar data..." [size]="'large'"></app-premium-loader>
+
+<div class="calendar-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <div class="calendar-title">
+          <h2>MR Legal Associates Calendar</h2>
+          <div class="legend">
+            <div class="legend-item">
+              <div class="color-box hearing"></div>
+              <span>Hearings</span>
+            </div>
+            <div class="legend-item">
+              <div class="color-box consultation"></div>
+              <span>Consultations</span>
+            </div>
+            <div class="legend-item">
+              <div class="color-box available"></div>
+              <span>Available Slots</span>
+            </div>
+            <div class="legend-item">
+              <div class="color-box conflict"></div>
+              <span>Conflicts</span>
+            </div>
+          </div>
+        </div>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="calendar-wrapper">
+        <full-calendar #calendar [options]="calendarOptions"></full-calendar>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="calendar-instructions">
+        <p><mat-icon>info</mat-icon> Click on an available slot to book a consultation</p>
+        <p><mat-icon>warning</mat-icon> Red events indicate scheduling conflicts that need attention</p>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

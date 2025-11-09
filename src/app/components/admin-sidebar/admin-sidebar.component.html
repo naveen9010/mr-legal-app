@@ -1,0 +1,41 @@
+<div class="admin-sidebar" [class.collapsed]="collapsed">
+  <div class="sidebar-header">
+    <button class="toggle-button" (click)="toggleSidebarCollapse()" matTooltip="Toggle Sidebar" matTooltipPosition="right">
+      <mat-icon>{{ collapsed ? 'menu' : 'chevron_left' }}</mat-icon>
+    </button>
+    <div class="logo-container" (click)="navigateToHome()">
+      <img src="assets/logo-mr-legal.png" alt="MR Legal Logo" class="logo">
+      <h2>MR Legal</h2>
+    </div>
+    <div class="admin-badge">
+      <span>Admin Panel</span>
+    </div>
+  </div>
+  
+  <mat-divider></mat-divider>
+  
+  <div class="menu-container">
+    <div 
+      *ngFor="let item of menuItems" 
+      class="menu-item" 
+      [class.active]="activeMenuItem === item.id"
+      (click)="selectMenuItem(item.id)"
+      [matTooltip]="item.label"
+      matTooltipPosition="right">
+      
+      <mat-icon>{{ item.icon }}</mat-icon>
+      <span class="menu-label">{{ item.label }}</span>
+      
+      <span *ngIf="item.badge && item.badge > 0" class="badge">
+        {{ item.badge }}
+      </span>
+    </div>
+  </div>
+  
+  <div class="sidebar-footer">
+    <button mat-button class="logout-button" (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Logout</span>
+    </button>
+  </div>
+</div>

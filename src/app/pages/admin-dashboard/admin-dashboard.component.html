@@ -1,11 +1,85 @@
-<!-- Admin Dashboard Header -->
-<div class="admin-dashboard-header">
-  <div class="header-content">
-    <i class="fas fa-gavel"></i>
-    <h2>Admin Dashboard: Hearing Schedules</h2>
-    <button class="logout-btn" (click)="logout()">Logout</button>
+<div class="admin-dashboard-container" [class.sidebar-collapsed]="sidebarCollapsed">
+  <!-- Admin Sidebar -->
+  <app-admin-sidebar 
+    [activeMenuItem]="activeMenuItem"
+    [collapsed]="sidebarCollapsed"
+    (menuItemSelected)="onMenuItemSelected($event)"
+    (logoutClicked)="logout()"
+    (toggleSidebar)="toggleSidebar()">
+  </app-admin-sidebar>
+  
+  <!-- Mobile Menu Toggle Button (visible only on mobile) -->
+  <button *ngIf="sidebarCollapsed" class="mobile-menu-toggle" (click)="toggleSidebar()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <!-- Premium Loader -->
+    <app-premium-loader *ngIf="isLoading" [overlay]="true" text="Processing your request..."></app-premium-loader>
+    
+    <!-- Hearing Schedules -->
+    <div *ngIf="activeMenuItem === 'hearings'" class="content-section">
+      <h2 class="section-title">Hearing Schedules</h2>
+      <app-hearing-schedule></app-hearing-schedule>
+    </div>
+    
+    <!-- Calendar View -->
+    <div *ngIf="activeMenuItem === 'calendar'" class="content-section">
+      <h2 class="section-title">Calendar View</h2>
+      <app-enhanced-calendar></app-enhanced-calendar>
+    </div>
+    
+    <!-- Forward Judgement -->
+    <div *ngIf="activeMenuItem === 'forward-judgement'" class="content-section">
+      <h2 class="section-title">Forward Judgement</h2>
+      <app-forward-judgement></app-forward-judgement>
+    </div>
+    
+    <!-- Consultation Requests -->
+    <div *ngIf="activeMenuItem === 'consultations'" class="content-section">
+      <h2 class="section-title">Pending Consultation Requests</h2>
+      
+      <div *ngIf="pendingConsultations.length === 0" class="no-consultations">
+        <p>No pending consultation requests.</p>
+      </div>
+      
+      <div class="consultation-cards">
+        <mat-card *ngFor="let consultation of pendingConsultations" class="consultation-card">
+          <mat-card-header>
+            <mat-card-title>{{ consultation.clientName }}</mat-card-title>
+            <mat-card-subtitle>
+              {{ consultation.consultDate | date:'mediumDate' }} at {{ consultation.consultTime }}
+            </mat-card-subtitle>
+          </mat-card-header>
+          
+          <mat-card-content>
+            <p><strong>Email:</strong> {{ consultation.email }}</p>
+            <p><strong>Phone:</strong> {{ consultation.phone }}</p>
+            <p><strong>Message:</strong> {{ consultation.message }}</p>
+          </mat-card-content>
+          
+          <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="acceptConsultation(consultation.id)">
+              <mat-icon>check</mat-icon> Accept
+            </button>
+            <button mat-raised-button color="warn" (click)="declineConsultation(consultation.id)">
+              <mat-icon>close</mat-icon> Decline
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+    
+    <!-- Client Payment Details -->
+    <div *ngIf="activeMenuItem === 'payments'" class="content-section">
+      <app-client-payment-details></app-client-payment-details>
+    </div>
+    
+    <!-- Notification Logs -->
+    <div *ngIf="activeMenuItem === 'notifications'" class="content-section">
+      <h2 class="section-title">Notification Logs</h2>
+      <app-notification-logs></app-notification-logs>
+    </div>
   </div>
 </div>
-
-<!-- Hearing Schedule Component -->
-<app-hearing-schedule></app-hearing-schedule>

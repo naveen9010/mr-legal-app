@@ -1,0 +1,113 @@
+<div class="notification-logs-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Notification Logs</mat-card-title>
+      <mat-card-subtitle>View and troubleshoot notification history</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <!-- Filters -->
+      <div class="filters-container">
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>Search</mat-label>
+          <input matInput [(ngModel)]="searchTerm" placeholder="Search notifications" (keyup)="applyFilters()">
+          <button *ngIf="searchTerm" matSuffix mat-icon-button aria-label="Clear" (click)="searchTerm=''; applyFilters()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        
+        <div class="date-filters">
+          <mat-form-field appearance="outline">
+            <mat-label>Start date</mat-label>
+            <input matInput [matDatepicker]="startPicker" [(ngModel)]="startDate">
+            <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+            <mat-datepicker #startPicker></mat-datepicker>
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline">
+            <mat-label>End date</mat-label>
+            <input matInput [matDatepicker]="endPicker" [(ngModel)]="endDate">
+            <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+            <mat-datepicker #endPicker></mat-datepicker>
+          </mat-form-field>
+          
+          <button mat-raised-button color="primary" (click)="loadNotificationLogs()" [disabled]="isLoading">
+            <mat-icon>search</mat-icon> Apply Filters
+          </button>
+          
+          <button mat-button (click)="resetFilters()" [disabled]="isLoading">
+            <mat-icon>clear</mat-icon> Reset
+          </button>
+        </div>
+      </div>
+      
+      <!-- Premium Loading indicator -->
+      <app-premium-loader *ngIf="isLoading" [size]="'medium'" [text]="'Loading notification logs...'" [overlay]="false"></app-premium-loader>
+      
+      <!-- No results message -->
+      <div *ngIf="!isLoading && filteredLogs.length === 0" class="no-results">
+        <mat-icon>notifications_off</mat-icon>
+        <p>No notification logs found</p>
+        <small>Try adjusting your filters or check back later</small>
+      </div>
+      
+      <!-- Results table -->
+      <div *ngIf="!isLoading && filteredLogs.length > 0" class="table-container">
+        <table mat-table [dataSource]="filteredLogs.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize)" matSort (matSortChange)="onSortChange($event)">
+          
+          <!-- Timestamp Column -->
+          <ng-container matColumnDef="timestamp">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Timestamp </th>
+            <td mat-cell *matCellDef="let log"> {{formatTimestamp(log.clientTimestamp)}} </td>
+          </ng-container>
+          
+          <!-- Title Column -->
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+            <td mat-cell *matCellDef="let log"> 
+              <div class="notification-title">
+                <strong>{{log.title}}</strong>
+                <small *ngIf="log.body">{{log.body}}</small>
+              </div>
+            </td>
+          </ng-container>
+          
+          <!-- Status Column -->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+            <td mat-cell *matCellDef="let log"> 
+              <span class="status-badge" [ngClass]="log.status">{{log.status}}</span>
+            </td>
+          </ng-container>
+          
+          <!-- Type Column -->
+          <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+            <td mat-cell *matCellDef="let log"> {{log.type}} </td>
+          </ng-container>
+          
+          <!-- Details Column -->
+          <ng-container matColumnDef="details">
+            <th mat-header-cell *matHeaderCellDef> Details </th>
+            <td mat-cell *matCellDef="let log">
+              <button mat-icon-button [matTooltip]="getLogDetails(log)" matTooltipPosition="left">
+                <mat-icon>info</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        
+        <mat-paginator 
+          [length]="totalLogs"
+          [pageSize]="pageSize"
+          [pageSizeOptions]="[5, 10, 25, 50]"
+          (page)="onPageChange($event)"
+          showFirstLastButtons>
+        </mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
